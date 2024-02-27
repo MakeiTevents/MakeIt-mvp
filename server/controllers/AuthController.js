@@ -9,7 +9,7 @@ export const registerUser = async (req, res) => {
   const hashedPass = await bcrypt.hash(req.body.password, salt);
   req.body.password = hashedPass
   const newUser = new UserModel(req.body);
-  const {username} = req.body
+  const {username, email} = req.body
   try {
     // addition new
     const oldUser = await UserModel.findOne({ username });

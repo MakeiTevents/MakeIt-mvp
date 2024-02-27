@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./Auth.css";
+import "./AuthOne.css";
 import Logo from "../../img/logo.png";
 import { logIn, signUp } from "../../actions/AuthActions.js";
 import { useDispatch, useSelector } from "react-redux";
@@ -9,6 +10,7 @@ const Auth = () => {
   const initialState = {
     firstname: "",
     lastname: "",
+    email: "",
     username: "",
     password: "",
     confirmpass: "",
@@ -48,27 +50,33 @@ const Auth = () => {
     }
   };
 
+  const [type, setType] = useState("signIn");
+  const handleOnClick = (text) => {
+    if (text !== type) {
+      setType(text);
+      return;
+    }
+  };
+  const containerClass =
+    "container " + (type === "signUp" ? "right-panel-active" : "");
+
   return (
     <div className="Auth">
       {/* left side */}
 
-      <div className="a-left">
-        <img src={Logo} alt="" />
-
-        <div className="Webname">
-          <h1>ZKC Media</h1>
-          <h6>Explore the ideas throughout the world</h6>
-        </div>
-      </div>
-
-      {/* right form side */}
-
-      <div className="a-right">
-        <form className="infoForm authForm" onSubmit={handleSubmit}>
-          <h3>{isSignUp ? "Register" : "Login"}</h3>
-          {isSignUp && (
-            <div>
-              <input
+      <div className={containerClass} id="container">
+        {/* <SignUpForm />
+        <SignInForm /> */}
+        <div
+          className={`form-container ${
+            isSignUp ? "sign-up-container" : "sign-in-container"
+          }`}
+        >
+          <form className="infoForm authForm" onSubmit={handleSubmit}>
+            <h3>{isSignUp ? "Register" : "Login"}</h3>
+            {isSignUp && (
+              <div>
+                {/* <input
                 required
                 type="text"
                 placeholder="First Name"
@@ -85,56 +93,66 @@ const Auth = () => {
                 name="lastname"
                 value={data.lastname}
                 onChange={handleChange}
+              /> */}
+                <input
+                  required
+                  type="text"
+                  placeholder="Email"
+                  className="infoInput"
+                  name="email"
+                  value={data.email}
+                  onChange={handleChange}
+                />
+              </div>
+            )}
+
+            <div>
+              <input
+                required
+                type="text"
+                placeholder="Username"
+                className="infoInput"
+                name="username"
+                value={data.username}
+                onChange={handleChange}
+                autoComplete="off"
               />
             </div>
-          )}
-
-          <div>
-            <input
-              required
-              type="text"
-              placeholder="Username"
-              className="infoInput"
-              name="username"
-              value={data.username}
-              onChange={handleChange}
-            />
-          </div>
-          <div>
-            <input
-              required
-              type="password"
-              className="infoInput"
-              placeholder="Password"
-              name="password"
-              value={data.password}
-              onChange={handleChange}
-            />
-            {isSignUp && (
+            <div>
               <input
                 required
                 type="password"
                 className="infoInput"
-                name="confirmpass"
-                placeholder="Confirm Password"
+                placeholder="Password"
+                name="password"
+                value={data.password}
                 onChange={handleChange}
               />
-            )}
-          </div>
+              {isSignUp && (
+                <input
+                  required
+                  type="password"
+                  className="infoInput"
+                  name="confirmpass"
+                  placeholder="Confirm Password"
+                  onChange={handleChange}
+                />
+              )}
+            </div>
 
-          <span
-            style={{
-              color: "red",
-              fontSize: "12px",
-              alignSelf: "flex-end",
-              marginRight: "5px",
-              display: confirmPass ? "none" : "block",
-            }}
-          >
-            *Confirm password is not same
-          </span>
-          <div>
             <span
+              style={{
+                color: "red",
+                fontSize: "12px",
+                alignSelf: "flex-end",
+                marginRight: "5px",
+                display: confirmPass ? "none" : "block",
+              }}
+            >
+              *Confirm password is not same
+            </span>
+            <div>
+              {/* <span
               style={{
                 fontSize: "12px",
                 cursor: "pointer",
@@ -148,17 +166,56 @@ const Auth = () => {
               {isSignUp
                 ? "Already have an account Login"
                 : "Don't have an account Sign up"}
-            </span>
-            <button
-              className="button infoButton"
-              type="Submit"
-              disabled={loading}
-            >
-              {loading ? "Loading..." : isSignUp ? "SignUp" : "Login"}
-            </button>
+            </span> */}
+              <button
+                className="button infoButton"
+                type="Submit"
+                disabled={loading}
+              >
+                {loading ? "Loading..." : isSignUp ? "SignUp" : "Login"}
+              </button>
+            </div>
+          </form>
+        </div>
+        <div className="overlay-container">
+          <div className="overlay">
+            <div className="overlay-panel overlay-left">
+              <h1>Welcome Back!</h1>
+              <p>
+                To keep connected with us please login with your personal info
+              </p>
+              <button
+                className="button infoButton"
+                id="signIn"
+                onClick={() => {
+                  handleOnClick("signIn");
+                  resetForm();
+                  setIsSignUp((prev) => !prev);
+                }}
+              >
+                Sign In
+              </button>
+            </div>
+            <div className="overlay-panel overlay-right">
+              <h1>Hello, Friend!</h1>
+              <p>Enter your personal details and start journey with us</p>
+              <button
+                className="button infoButton "
+                id="signUp"
+                onClick={() => {
+                  handleOnClick("signUp");
+                  resetForm();
+                  setIsSignUp((prev) => !prev);
+                }}
+              >
+                Sign Up
+              </button>
+            </div>
           </div>
-        </form>
+        </div>
       </div>
+
+      {/* right form side */}
     </div>
   );
 };
