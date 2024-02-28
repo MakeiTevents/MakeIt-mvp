@@ -157,6 +157,13 @@
     transition: transform 0.6s ease-in-out;
     z-index: 100;
   }
+
+  .login-img {
+    width: 300px;
+    z-index: 200;
+    margin-top: 14rem;
+    margin-left: 10rem;
+  }
   
   .container.right-panel-active .overlay-container {
     transform: translateX(-100%);
@@ -206,6 +213,7 @@
   .overlay-right {
     right: 0;
     transform: translateX(0);
+    margin-top: -6rem;
   }
   
   .container.right-panel-active .overlay-right {
