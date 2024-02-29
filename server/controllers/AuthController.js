@@ -1,32 +1,45 @@
 import UserModel from "../models/userModel.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import crypto from "crypto";
+import Token from "../models/token.js";
+import verifyMail from "../Utils/verifyMail.js";
 
 // Register new user
 export const registerUser = async (req, res) => {
-
   const salt = await bcrypt.genSalt(10);
   const hashedPass = await bcrypt.hash(req.body.password, salt);
-  req.body.password = hashedPass
+  req.body.password = hashedPass;
   const newUser = new UserModel(req.body);
-  const {username, email} = req.body
+  const { username, email } = req.body;
   try {
-    // addition new
     const oldUser = await UserModel.findOne({ username });
 
     if (oldUser)
       return res.status(400).json({ message: "User already exists" });
 
-    // changed
     const user = await newUser.save();
-    const token = jwt.sign(
+
+    const token = new Token({
+      userId: user._id,
+      token: crypto.randomBytes(16).toString("hex"),
+    });
+    await token.save();
+    console.log(token);
+
+    const link = `http://localhost:5000/api/auth/confirm/${token.token}`;
+    await verifyMail(email, link);
+
+    const tok = jwt.sign(
       { username: user.username, id: user._id },
       process.env.JWT_KEY,
       { expiresIn: "1h" }
     );
-    res.status(200).json({ user, token });
+
+    res.status(200).json({ user, tok, success: true, message: "User registered successfully" });
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    console.error(error);
+    res.status(500).json({ success: false, message: "Internal server error" });
   }
 };
 
