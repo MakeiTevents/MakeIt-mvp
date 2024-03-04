@@ -2,6 +2,8 @@ import "./App.css";
 import { Routes, Route, Navigate } from "react-router-dom";
 import Home from "./pages/Home";
 import Auth from "./pages/Auth/Auth";
+import ForgotPassword  from "./pages/Auth/ForgotPassword";
+import ResetPassword  from "./pages/Auth/resetPassword";
 import Profile from "./pages/Profile/Profile";
 import { useSelector } from "react-redux";
 import Chat from "./pages/Chat/Chat";
@@ -33,6 +35,8 @@ function App() {
           path="/auth"
           element={user ? <Navigate to="../home" /> : <Auth />}
         />
+        <Route path="/forgot-password" element={<ForgotPassword />}></Route>
+        <Route path="/reset_password/:id/:token" element={<ResetPassword />}></Route>
         <Route
           path="/profile/:id"
           element={user ? <Profile /> : <Navigate to="../auth" />}

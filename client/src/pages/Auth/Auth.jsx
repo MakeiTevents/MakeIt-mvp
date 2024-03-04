@@ -6,7 +6,7 @@ import fest from "../../img/festivities.svg";
 import amu from "../../img/amusement.svg";
 import { logIn, signUp } from "../../actions/AuthActions.js";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Auth = () => {
   const initialState = {
@@ -99,11 +99,11 @@ const Auth = () => {
               /> */}
                   <input
                     required
-                    type="text"
+                    type="email"
                     placeholder="Email"
                     className="infoInput"
                     name="email"
-                    autocomplete="off"
+                    autoComplete="off"
                     value={data.email}
                     onChange={handleChange}
                   />
@@ -117,7 +117,6 @@ const Auth = () => {
                   placeholder="Username"
                   className="infoInput"
                   name="username"
-                  autocomplete="off"
                   value={data.username}
                   onChange={handleChange}
                   autoComplete="off"
@@ -130,7 +129,7 @@ const Auth = () => {
                   className="infoInput"
                   placeholder="Password"
                   name="password"
-                  autocomplete="off"
+                  autoComplete="off"
                   value={data.password}
                   onChange={handleChange}
                 />
@@ -140,25 +139,27 @@ const Auth = () => {
                     type="password"
                     className="infoInput"
                     name="confirmpass"
-                    autocomplete="off"
+                    autoComplete="off"
                     placeholder="Confirm Password"
                     onChange={handleChange}
                   />
                 )}
               </div>
-              <span
+              <Link
+              to="/forgot-password"
               style={{
                 fontSize: "12px",
                 cursor: "pointer",
                 fontWeight:"bold",
                 justifyContent:"end",
-                marginLeft:"12rem"
+                marginLeft:"12rem",
+                textDecoration:"none"
               }}
             >
               {isSignUp
                 ? ""
                 : "Forgot Password ?"}
-            </span>
+            </Link>
               <span
                 style={{
                   color: "red",
