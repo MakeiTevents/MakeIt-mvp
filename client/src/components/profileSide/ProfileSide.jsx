@@ -1,16 +1,20 @@
-import React from 'react'
-import FollowersCard from '../FollowersCard/FollowersCard'
-import LogoSearch from '../LogoSearch/LogoSearch'
-import ProfileCard from '../ProfileCard/ProfileCard'
-import './ProfileSide.css'
+import React from "react";
+// import FollowersCard from "../FollowersCard/FollowersCard";
+import "./ProfileSide.css";
+import NavIcons from "../NavIcons/NavIcons";
+// import "../RightSide/RightSide.css";
+
 const ProfileSide = () => {
   return (
     <div className="ProfileSide">
-        <LogoSearch/>
-        <ProfileCard location = 'homepage'/>
-        <FollowersCard/>
-    </div>
-    )
-}
+      <div>
+      <h1>MakeiT</h1>
+      <NavIcons />
+      </div>
 
-export default ProfileSide
+      {/* <FollowersCard /> */}
+    </div>
+  );
+};
+
+export default ProfileSide;

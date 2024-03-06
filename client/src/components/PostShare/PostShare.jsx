@@ -1,6 +1,6 @@
 import React, { useState, useRef } from "react";
 import "./PostShare.css";
-import { UilScenery } from "@iconscout/react-unicons";
+import { UilPlusCircle } from "@iconscout/react-unicons";
 import { UilPlayCircle } from "@iconscout/react-unicons";
 import { UilLocationPoint } from "@iconscout/react-unicons";
 import { UilSchedule } from "@iconscout/react-unicons";
@@ -79,14 +79,14 @@ const PostShare = () => {
         <div className="postOptions">
           <div
             className="option"
-            style={{ color: "var(--photo)" }}
+            style={{ color: "var(--photo)", marginLeft:"-11rem" }}
             onClick={() => imageRef.current.click()}
           >
-            <UilScenery />
-            Photo
+            <UilPlusCircle />
+            Share Your Thoughts
           </div>
 
-          <div className="option" style={{ color: "var(--video)" }}>
+          {/* <div className="option" style={{ color: "var(--video)" }}>
             <UilPlayCircle />
             Video
           </div>
@@ -97,7 +97,7 @@ const PostShare = () => {
           <div className="option" style={{ color: "var(--shedule)" }}>
             <UilSchedule />
             Shedule
-          </div>
+          </div> */}
           <button
             className="button ps-button"
             onClick={handleUpload}

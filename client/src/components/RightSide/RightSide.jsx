@@ -3,7 +3,9 @@ import "./RightSide.css";
 
 import TrendCard from "../TrendCard/TrendCard";
 import ShareModal from "../ShareModal/ShareModal";
-import NavIcons from "../NavIcons/NavIcons";
+// import NavIcons from "../NavIcons/NavIcons";
+import ProfileCard from '../ProfileCard/ProfileCard'
+
 const RightSide = () => {
   const [modalOpened, setModalOpened] = useState(false);
 
@@ -11,7 +13,10 @@ const RightSide = () => {
     <div className="RightSide">
       {/* Side Navbar */}
 
-      <NavIcons />
+      {/* <NavIcons /> */}
+
+      <ProfileCard location = 'homepage'/>
+
       {/* TrendCard */}
       <TrendCard />
 

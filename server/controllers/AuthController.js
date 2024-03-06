@@ -82,7 +82,7 @@ export const forgotPassword = async (req, res) => {
           return res.send({Status: "User not existed"})
       } 
       const token = jwt.sign({id: user._id}, process.env.JWT_KEY, {expiresIn: "1d"})
-      var transporter = nodemailer.createTransport({
+      const transporter = nodemailer.createTransport({
           service: 'gmail',
           auth: {
             user: process.env.NODEMAIL_EMAIL,
@@ -90,7 +90,7 @@ export const forgotPassword = async (req, res) => {
           }
         });
         
-        var mailOptions = {
+        const mailOptions = {
           from: process.env.NODEMAIL_EMAIL,
           to: email,
           subject: 'Reset Password Link',

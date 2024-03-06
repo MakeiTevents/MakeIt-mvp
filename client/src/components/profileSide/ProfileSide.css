@@ -1,7 +1,13 @@
 .ProfileSide{
-    display: flex;
-    flex-direction: column;
+    /* display: flex;
+    flex-direction: column; */
     gap: 1rem;
     align-items: center;
     overflow: auto;
 }
+
+/* .RightSide{
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+} */
