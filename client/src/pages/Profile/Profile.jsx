@@ -2,17 +2,19 @@ import React from "react";
 import PostSide from "../../components/PostSide/PostSide";
 import ProfileCard from "../../components/ProfileCard/ProfileCard";
 import ProfileLeft from "../../components/ProfileLeft/ProfileLeft";
-import RightSide from "../../components/RightSide/RightSide";
+import ProfileRightSide from "../../components/RightSide/ProfileRightSide";
+import ProfileSide from "../../components/profileSide/ProfileSide";
+
 import "./Profile.css";
 const Profile = () => {
   return (
     <div className="Profile">
-      <ProfileLeft />
+      <ProfileSide />
       <div className="Profile-center">
         <ProfileCard location = 'profilePage'/>
       <PostSide/>
       </div>
-      <RightSide/>
+      <ProfileRightSide/>
     </div>
   );
 };
