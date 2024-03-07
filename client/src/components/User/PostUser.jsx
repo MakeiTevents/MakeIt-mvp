@@ -32,14 +32,6 @@ const User = ({ person }) => {
           {/* <span>{person.email}</span> */}
         </div>
       </div>
-      <button
-        className={
-          following ? "button fc-button UnfollowButton" : "button fc-button"
-        }
-        onClick={handleFollow}
-      >
-        {following ? "Unfollow" : "Follow"}
-      </button>
     </div>
   );
 };

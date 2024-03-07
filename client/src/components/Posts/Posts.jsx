@@ -28,13 +28,13 @@ const Posts = () => {
   return (
     <div className="Posts">
       {/* {persons.map((person, id) => {
-        if (person.userId === posts.userId) return (user.username);
+        if (person._id == posts.userId) return <User person={person} key={id} />;
       })} */}
       {loading
         ? "Fetching posts...."
         : 
         posts.map((post, id) => {
-            return <Post data={post} key={id} />;
+          return <Post data={post} key={id} />;
           })}
     </div>
   );
