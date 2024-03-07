@@ -6,6 +6,17 @@
     border-radius: 1rem;
 }
 
+.feedButtons {
+    display: flex;
+    justify-content: space-between;
+    font-size: 20px;
+    font-weight: bold;
+    color: var(--location);
+}
+.feedButtons p {
+    cursor: pointer;
+}
+
 
 .PostShare>img{
     border-radius: 50%;

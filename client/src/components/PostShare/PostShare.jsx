@@ -60,6 +60,11 @@ const PostShare = () => {
     desc.current.value = "";
   };
   return (
+    <>
+    <div className="feedButtons">
+        <p>New Feed</p>
+        <p>Trending</p>
+      </div>
     <div className="PostShare">
       <img
         src={
@@ -119,6 +124,7 @@ const PostShare = () => {
         )}
       </div>
     </div>
+    </>
   );
 };
 

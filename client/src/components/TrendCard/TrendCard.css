@@ -7,6 +7,9 @@
     border-radius: 1rem;
     padding-left: 2rem;
 }
+.TrendCard h3 {
+    color: var(--location);
+}
 
 
 .trend{

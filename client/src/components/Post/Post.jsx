@@ -20,6 +20,12 @@ const Post = ({ data }) => {
   };
   return (
     <div className="Post">
+      <div className="detail">
+        <span>
+          <b>{data.name} </b>
+        </span>
+        <span>{data.desc}</span>
+      </div>
       <img
         src={data.image ? process.env.REACT_APP_PUBLIC_FOLDER + data.image : ""}
         alt=""
@@ -39,12 +45,7 @@ const Post = ({ data }) => {
       <span style={{ color: "var(--gray)", fontSize: "12px" }}>
         {likes} likes
       </span>
-      <div className="detail">
-        <span>
-          <b>{data.name} </b>
-        </span>
-        <span>{data.desc}</span>
-      </div>
+      
     </div>
   );
 };
