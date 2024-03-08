@@ -12,13 +12,12 @@ import axios from 'axios'
 const ForgotPassword  = () => {
     const [email, setEmail] = useState()
     const navigate = useNavigate()
-
-    axios.defaults.withCredentials = true;
     const handleSubmit = (e) => {
         e.preventDefault()
         axios.post('/auth/forgot-password', {email})
         .then(res => {
-            if(res.data.Status === "Success") {
+            if(res.data.Status) {
+              alert("Please check your email for reset password link")
                 navigate('/auth')
                
             }

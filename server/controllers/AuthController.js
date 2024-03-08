@@ -76,13 +76,13 @@ export const loginUser = async (req, res) => {
 
 export const forgotPassword = async (req, res) => {
   const {email} = req.body;
-  UserModel.findOne({email: email})
-  .then(user => {
+  try {
+    const user = await UserModel.findOne({email: email})
       if(!user) {
-          return res.send({Status: "User not existed"})
+          return res.json({message: "User not existed"})
       } 
       const token = jwt.sign({id: user._id}, process.env.JWT_KEY, {expiresIn: "1d"})
-      const transporter = nodemailer.createTransport({
+      var transporter = nodemailer.createTransport({
           service: 'gmail',
           auth: {
             user: process.env.NODEMAIL_EMAIL,
@@ -90,21 +90,24 @@ export const forgotPassword = async (req, res) => {
           }
         });
         
-        const mailOptions = {
+        var mailOptions = {
           from: process.env.NODEMAIL_EMAIL,
           to: email,
           subject: 'Reset Password Link',
-          text: `http://localhost:5000/reset_password/${user._id}/${token}`
+          text: `http://localhost:5173/reset_password/${user._id}/${token}`
         };
         
         transporter.sendMail(mailOptions, function(error, info){
           if (error) {
-            console.log(error);
+            return res.json({Status: true, message:"email sent failed"})
+
           } else {
-            return res.send({Status: "Success"})
+            return res.json({Status: true, message:"email sent"})
           }
         });
-  })
+  } catch (error) {
+    console.log();
+  }
 };
 
 export const resetPassword = async (req, res) => {
